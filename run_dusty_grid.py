@@ -64,7 +64,7 @@ for model in models:
     spectrum = pd.read_csv(model, delim_whitespace=True, names=['flux'])
     
     # Smooth spectrum, convert to microns and trim
-    spectrum_smooth = smooth(wave['lambda']/1e4, s3800['flux'])
+    spectrum_smooth = smooth(wave['lambda']/1e4, spectrum['flux'])
     spectrum_smooth = spectrum_smooth[spectrum_smooth['Lambda'] < 6]
     
     # Write this to a file in format ready for DUSTY
@@ -99,7 +99,7 @@ for model in models:
             # Find what line numbers in the file corespond to the info on output spectra
             if "========================================================================================" in line:
                 models_line_start = num     
-            model_info_lines = list(range((int(models_line_start)+1),(int(models_line_start)+1+int(no_of_optical_depths))))
+                model_info_lines = list(range((int(models_line_start)+1),(int(models_line_start)+1+int(no_of_optical_depths))))
             
             if (num in model_info_lines):
                 
